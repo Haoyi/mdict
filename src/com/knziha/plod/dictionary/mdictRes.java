@@ -20,7 +20,7 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.Inflater;
 import java.util.zip.InflaterOutputStream;
 
-import com.knziha.rbtree.RBTree;
+import com.xiaoyan.rbtree.RBTree;
 
 
 /**
@@ -254,7 +254,7 @@ public class mdictRes {
         _record_block_offset = _key_block_offset+num_bytes+4+key_block_info_size+key_block_size;
 //_read_keys END
         
-		//for(myCpr<String,Integer> i:block_blockId_search_tree.flatten())
+		//for(nodeComparable<String,Integer> i:block_blockId_search_tree.flatten())
 		//	System.out.println(i);
 		
 		System.out.println("accumulation_blockId_tree_TIME 建树时间="+accumulation_blockId_tree_TIME);
@@ -730,7 +730,7 @@ System.out.println("查询"+key+"时间： "+(end-start)+"ms");
                 sf.get();sf.get();                
             }
             infoI.headerKeyText = new String(textbuffer,_encoding);
-            System.out.println("headerKeyText is:"+infoI.headerKeyText);
+            System.out.println("first_word is:"+infoI.headerKeyText);
             
             //![1]  tail word text
             int text_tail_size = sf.getChar();
@@ -745,18 +745,18 @@ System.out.println("查询"+key+"时间： "+(end-start)+"ms");
             }
           //TODO:兼容性
             infoI.tailerKeyText = new String(textbuffer,_encoding);
-            System.out.println("tailerKeyText is:"+infoI.tailerKeyText);
+            System.out.println("last_word is:"+infoI.tailerKeyText);
             
-            //infoI = new key_info_struct(headerKeyText,
-            //		tailerKeyText,
-            //		key_block_compressed_size,
-            //		key_block_decompressed_size);
+            //infoI = new key_index_info_struct(first_word,
+            //		last_word,
+            //		comp_size,
+            //		decomp_size);
             infoI.key_block_compressed_size_accumulator = key_block_compressed_size;
             key_block_compressed_size += sf.getLong();
             infoI.key_block_decompressed_size = sf.getLong();
             start2=System.currentTimeMillis(); //获取开始时间  
             block_blockId_search_tree.insert(new myCpr<String, Integer>(infoI.headerKeyText,i));
-            //block_blockId_search_tree.insert(new myCpr<String, Integer>(tailerKeyText,i));
+            //block_blockId_search_tree.insert(new nodeComparable<String, Integer>(last_word,i));
             end2=System.currentTimeMillis(); //获取结束时间
             block_blockId_search_tree_TIME+=end2-start2;
         }

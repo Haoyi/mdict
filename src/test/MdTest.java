@@ -16,9 +16,9 @@ import java.util.zip.DataFormatException;
 
 import com.knziha.plod.dictionary.CMN;
 import com.knziha.plod.dictionary.mdict;
-import com.knziha.rbtree.RBTNode;
-import com.knziha.rbtree.RBTree_additive;
-import com.knziha.rbtree.RBTree.inOrderDo;
+import com.xiaoyan.rbtree.RBTNode;
+import com.xiaoyan.rbtree.RBTree_additive;
+import com.xiaoyan.rbtree.RBTree.inOrderDo;
 
 
 
@@ -43,7 +43,7 @@ public class MdTest {
     @SuppressWarnings("unused")
 	public static void main(String[] args) throws IOException, DataFormatException  {
     //assign Mdx File here!
-    	final mdict md = new mdict("./dic/OALD8_20140916.mdx");
+    	final mdict md = new mdict("./dic/OxfordDictionaryofEnglish3e.mdx");
     //A keyword to search!			//简明英汉汉英词典.mdx      古生物图鉴.mdx
     	String key = "new";//abduco@拉丁语英语		马连鞍@有毒植物		happy@English-Chinese 
     	
